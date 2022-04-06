@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM python:3-alpine AS build
+FROM python:3-alpine AS build
 
 RUN apk add --no-cache restic
 
