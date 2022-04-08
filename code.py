@@ -3,6 +3,7 @@ import utils
 import logging
 
 VOLUME_BASE_PATH = '/data/'
+ENV_FILE_PATH = '/.env'
 
 logging.basicConfig(
     level=logging.INFO,
@@ -24,6 +25,9 @@ if __name__ == "__main__":
     with open("/config/backup.yml", "r") as stream:
         logging.info("Reading config file")
         containers_array = utils.parseConfig(stream)
+    logging.info("Starting backup")
+    logging.info("Backing up env file")
+    utils.backup_volume(ENV_FILE_PATH)
     for container in containers_array:
         logging.info("Working on container: " + container.container_name + ", volume: " + VOLUME_BASE_PATH + container.volume_path + ", shutdown required: " + str(container.shutdown_required))
         current_container_status = False
