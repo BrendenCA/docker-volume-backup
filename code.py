@@ -28,6 +28,7 @@ if __name__ == "__main__":
     if(len(sys.argv) > 1 and sys.argv[1] == 'restore'):
         logging.info("Restoring latest backup")
         for container in containers_array:
+            logging.info("Restoring container: " + container.container_name + ", volume: " + VOLUME_BASE_PATH + container.volume_path)
             utils.restore_volume(VOLUME_BASE_PATH + container.volume_path)
         sys.exit(0)
     logging.info("Starting backup")
