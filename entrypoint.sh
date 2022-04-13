@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 cmdLineParameter="$1"
-if [ "$cmdLineParameter" = "init" ]; then
-    exec python code.py init
+if [ -n "$cmdLineParameter" ]; then
+    exec python code.py $cmdLineParameter
     exit 0
 fi
 echo "Volume Backup Container Started"
