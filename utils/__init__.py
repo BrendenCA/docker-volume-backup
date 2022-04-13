@@ -63,7 +63,7 @@ def backup_volume(volume_path: str) -> None:
     subprocess.run(["restic", "--host", restic_host, "backup", volume_path], env = restic_env_object)
 
 def restore_volume(volume_path: str) -> None:
-    subprocess.run(["restic", "restore", "latest", "--host", restic_host, "--target", volume_path, "--path", volume_path], env = restic_env_object)
+    subprocess.run(["restic", "restore", "latest", "--host", restic_host, "--target", "/", "--path", volume_path], env = restic_env_object)
 
 def init_repo() -> None:
     subprocess.run(["restic", "init"], env = restic_env_object)
