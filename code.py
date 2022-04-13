@@ -25,6 +25,11 @@ if __name__ == "__main__":
     with open("/config/backup.yml", "r") as stream:
         logging.info("Reading config file")
         containers_array = utils.parseConfig(stream)
+    if(len(sys.argv) > 1 and sys.argv[1] == 'restore'):
+        logging.info("Restoring latest backup")
+        for container in containers_array:
+            utils.restore_volume(VOLUME_BASE_PATH + container.volume_path)
+        sys.exit(0)
     logging.info("Starting backup")
     logging.info("Backing up env file")
     utils.backup_volume(ENV_FILE_PATH)
