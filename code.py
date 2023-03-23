@@ -31,6 +31,8 @@ if __name__ == "__main__":
             logging.info("Restoring container: " + container.container_name + ", volume: " + VOLUME_BASE_PATH + container.volume_path)
             utils.restore_volume(VOLUME_BASE_PATH + container.volume_path)
         sys.exit(0)
+    logging.info("Forgetting old snapshots")
+    utils.forget_old_snapshots()
     logging.info("Starting backup")
     logging.info("Backing up env file")
     utils.backup_volume(ENV_FILE_PATH)

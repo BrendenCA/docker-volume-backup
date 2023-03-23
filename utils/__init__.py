@@ -59,6 +59,9 @@ def start_container(container_name: str) -> None:
     except docker.errors.NotFound as exc:
         print(f"Container doesn't exist\n{exc.explanation}")
 
+def forget_old_snapshots() -> None:
+    subprocess.run(["restic", "forget", "--keep-daily", "7", "--keep-weekly", "5", "--keep-monthly", "12", "--keep-yearly", "75", "--prune"], env = restic_env_object)
+
 def backup_volume(volume_path: str) -> None:
     subprocess.run(["restic", "--host", restic_host, "backup", volume_path], env = restic_env_object)
 
